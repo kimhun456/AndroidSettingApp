@@ -1,0 +1,146 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="장소 이름  :  " />
+
+            <EditText
+                android:id="@+id/nameEdit"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="input Place Name" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="장소 선택  :  " />
+
+            <Button
+                android:id="@+id/curplcBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="현재위치" />
+
+            <Button
+                android:id="@+id/plcBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="위치고르기" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="선택된 위치  :  "/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/placeName"
+                android:text=""/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="WIFI설정  :  " />
+
+            <ToggleButton
+                android:id="@+id/wifiToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ToggleButton" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="진동 설정  :  " />
+
+            <RadioGroup
+                android:id="@+id/setGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/soundRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="소리 Mode" />
+
+                <RadioButton
+                    android:id="@+id/vibrationRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="진동 Mode" />
+
+                <RadioButton
+                    android:id="@+id/silentRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="무음 Mode" />
+            </RadioGroup>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/setbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="OK" />
+
+        <Button
+            android:id="@+id/backbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Back" />
+    </LinearLayout>
+
+</LinearLayout>
