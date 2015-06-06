@@ -1,9 +1,5 @@
 package net.amicom.customizedphone;
 
-import java.util.List;
-import java.util.Locale;
-
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
@@ -22,6 +18,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+import java.util.Locale;
+
 public class SetMapActivity extends Activity {
     GoogleMap map;
     Geocoder gc;
@@ -32,6 +31,7 @@ public class SetMapActivity extends Activity {
     double lat;
     double lon;
     GPStracker gps;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -10,18 +10,19 @@ public class MySQLiteHandler {
     MySQLiteOpenHelper helper;
     SQLiteDatabase db;
 
-    public MySQLiteHandler(Context context){
+    public MySQLiteHandler(Context context) {
         helper = new MySQLiteOpenHelper(context, "AutoSetting", null, 1);
     }
 
-    public static MySQLiteHandler open(Context context){
+    public static MySQLiteHandler open(Context context) {
         return new MySQLiteHandler(context);
     }
-    public  void close(){
+
+    public void close() {
         helper.close();
     }
 
-    public void insert( DataForm df){
+    public void insert(DataForm df) {
 
         db = helper.getWritableDatabase();
 
@@ -43,24 +44,22 @@ public class MySQLiteHandler {
         db.insert("AutoSettingData", null, values);
     }
 
-    public void update(DataForm df){
+    public void update(DataForm df) {
 
         db = helper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("primary_Key", df.getPrimary_Key());
-        db.update("AutoSettingData", values, "primary_Key = ?", new String[]{ df.getTime_Location_Checking()+"" });
-
+        db.update("AutoSettingData", values, "primary_Key = ?", new String[]{df.getTime_Location_Checking() + ""});
     }
-    public void delete(DataForm df){
+
+    public void delete(DataForm df) {
         db = helper.getWritableDatabase();
-        db.delete("AutoSettingData", "primary_Key = ? ",  new String[]{ df.getTime_Location_Checking()+"" } );
+        db.delete("AutoSettingData", "primary_Key = ? ", new String[]{df.getTime_Location_Checking() + ""});
     }
 
-    public Cursor select(){
-        db = helper.getReadableDatabase( );
-
+    public Cursor select() {
+        db = helper.getReadableDatabase();
         Cursor c = db.query("AutoSettingData", null, null, null, null, null, null);
-
         return c;
     }
 

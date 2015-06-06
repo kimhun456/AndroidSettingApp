@@ -34,7 +34,6 @@ public class DataForm {
     public DataForm(Cursor cu) {
         for (int i = 0; i < cu.getCount(); i++) {
             cu.moveToNext();
-
             primary_Key = cu.getInt(0);
             time_Location_Checking = cu.getInt(1);
             start_Time = cu.getString(2);

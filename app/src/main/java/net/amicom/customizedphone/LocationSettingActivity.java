@@ -13,6 +13,7 @@ import android.widget.ToggleButton;
 
 public class LocationSettingActivity extends Activity {
 
+    MySQLiteHandler handler;
     static final int MAP_CODE = 1001;
     EditText nameEdit;
     Button curLocBtn;
@@ -26,6 +27,9 @@ public class LocationSettingActivity extends Activity {
     Button setBtn;
     Button backBtn;
     GPStracker gps;
+
+    double latitude;
+    double longitude;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +57,11 @@ public class LocationSettingActivity extends Activity {
                 if (gps.canGetLocation()) {
                     gps.getLatitude();
                     gps.getLongitude();
-
                     Toast.makeText(LocationSettingActivity.this,
                             gps.getLatitude() + " " + gps.getLongitude() + "",
                             Toast.LENGTH_SHORT).show();
+                    latitude = gps.getLatitude();
+                    longitude = gps.getLongitude();
                 } else {
                     gps.showSettingsAlert();
                 }
@@ -84,6 +89,35 @@ public class LocationSettingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+
+                DataForm df = new DataForm();
+                df.setTime_Location_Checking(1);
+                df.setOn_Off_Selecting(1);
+                df.setTime_Location_Checking(0);
+                df.setLocation_Address_Name(placeTxt.getText().toString());
+                df.setLocation_Name(nameEdit.getText().toString());
+                df.setLatitude(latitude + "");
+                df.setLongitude(longitude + "");
+                df.setDiameter("10");
+                if (wifiBtn.isChecked()) {
+                    df.setWifi_Checking(1);
+                } else {
+                    df.setWifi_Checking(0);
+                }
+
+                if (soundBtn.isChecked()) {
+                    df.setSound_Checking(0);
+                } else if (vibrationBtn.isChecked()) {
+                    df.setSound_Checking(1);
+                } else {
+                    df.setSound_Checking(2);
+                }
+
+                handler = new MySQLiteHandler(LocationSettingActivity.this);
+                handler.insert(df);
+                Intent intent = new Intent(getApplicationContext(),
+                        ListActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -109,11 +143,11 @@ public class LocationSettingActivity extends Activity {
 
                 placeTxt.setText(name);
 
-                //placeTxt.append(" " + Data.getExtras().getDouble("latitude"));
-                //placeTxt.append(" " + Data.getExtras().getDouble("longitude"));
+                latitude = Data.getExtras().getDouble("latitude");
+                longitude = Data.getExtras().getDouble("longitude");
 
-            }
-            else{
+
+            } else {
                 placeTxt.setText("값이 들어오지 않았습니다.");
             }
         }

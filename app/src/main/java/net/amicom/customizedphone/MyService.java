@@ -1,9 +1,5 @@
 package net.amicom.customizedphone;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -18,6 +14,10 @@ import android.media.AudioManager;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.util.Log;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 @SuppressLint("SimpleDateFormat")
 public class MyService extends Service implements Runnable {
@@ -57,8 +57,6 @@ public class MyService extends Service implements Runnable {
         df.setLatitude("37.284272");
         df.setLongitude("127.044629");
         df.setDiameter("10");
-
-
 
 
         df.setWifi_Checking(0);
