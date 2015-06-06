@@ -284,7 +284,7 @@ public class MyService extends Service implements Runnable {
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
         Notification n = new Notification.Builder(this).setContentTitle(title)
-                .setContentText(text).setSmallIcon(R.drawable.ic_launcher)
+                .setContentText(text).setSmallIcon(R.drawable.setting)
                 .setContentIntent(pIntent).setAutoCancel(true).build();
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -304,16 +304,16 @@ public class MyService extends Service implements Runnable {
         if (soundChecking == 0) {
 
             audiomanager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-            result.append("Sound Mode ON");
+            result.append("Sound Mode & ");
         } else if (soundChecking == 1) {
 
             audiomanager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-            result.append("Vibration Mode ON");
+            result.append("Vibration Mode & ");
 
         } else if (soundChecking == 2) {
 
             audiomanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-            result.append("Silent Mode ON");
+            result.append("Silent Mode & ");
 
         } else {
             Log.i(TAG, "error in set mode");
@@ -321,11 +321,11 @@ public class MyService extends Service implements Runnable {
 
         if (wifiChecking == 1) {
             wifimanager.setWifiEnabled(true);
-            result.append("	WIFI ON");
+            result.append("	Wifi ON");
 
         } else {
             wifimanager.setWifiEnabled(false);
-            result.append("	WIFI OFF");
+            result.append("	Wifi OFF");
 
         }
 

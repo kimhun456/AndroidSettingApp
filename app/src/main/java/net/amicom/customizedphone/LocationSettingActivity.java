@@ -45,7 +45,7 @@ public class LocationSettingActivity extends Activity {
         setBtn = (Button) findViewById(R.id.setbtn);
         backBtn = (Button) findViewById(R.id.backbtn);
 
-        
+
         locBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -104,6 +104,7 @@ public class LocationSettingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+                startActivity(new Intent(getApplicationContext(), ListActivity.class));
                 finish();
             }
         });

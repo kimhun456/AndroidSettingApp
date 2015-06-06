@@ -49,12 +49,12 @@ public class MySQLiteHandler {
         db = helper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("primary_Key", df.getPrimary_Key());
-        db.update("AutoSettingData", values, "primary_Key = ?", new String[]{df.getPrimary_Key()+""});
+        db.update("AutoSettingData", values, "primary_Key = ?", new String[]{df.getPrimary_Key() + ""});
     }
 
     public void delete(DataForm df) {
         db = helper.getWritableDatabase();
-        db.delete("AutoSettingData", "primary_Key = ? ", new String[]{df.getPrimary_Key()+""});
+        db.delete("AutoSettingData", "primary_Key = ? ", new String[]{df.getPrimary_Key() + ""});
     }
 
     public Cursor select() {

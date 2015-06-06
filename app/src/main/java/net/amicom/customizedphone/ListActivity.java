@@ -1,10 +1,10 @@
 package net.amicom.customizedphone;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -18,7 +18,7 @@ import it.gmariotti.cardslib.library.view.CardListView;
 import it.gmariotti.cardslib.library.view.listener.dismiss.DefaultDismissableManager;
 
 
-public class ListActivity extends ActionBarActivity {
+public class ListActivity extends Activity {
 
 
     public static final String intentkey = "locatonSetting";
@@ -33,6 +33,7 @@ public class ListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listview);
 
+
         DBtoList();
         showList();
         stopService(new Intent(this, MyService.class));
@@ -44,6 +45,7 @@ public class ListActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LocationSettingActivity.class);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -97,22 +99,20 @@ public class ListActivity extends ActionBarActivity {
                     datalist.remove(df);
                     handler.delete(df);
 
-
                     Intent proxintent = new Intent(intentkey);
                     proxintent.putExtra("wifiChecking", df.getWifi_Checking());
                     proxintent.putExtra("soundChecking", df.getSound_Checking());
                     proxintent.putExtra("name", df.getLocation_Name());
-                    proxintent.putExtra("id", df.getPrimary_Key());
 
                     // 팬딩인텐트를 등록시킨다.
                     PendingIntent intent = PendingIntent.getBroadcast(ListActivity.this, df.getPrimary_Key(), proxintent,
                             PendingIntent.FLAG_CANCEL_CURRENT);
 
-                    // 근접경보를 등록시킨다.
+                    // 근접경보를 제거한다.
                     gps.locationManager.removeProximityAlert(intent);
                     stopService(new Intent(ListActivity.this, MyService.class));
                     startService(new Intent(ListActivity.this, MyService.class));
-                    Toast.makeText(ListActivity.this, df.getLocation_Name() + " is DELETED !!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ListActivity.this, df.getLocation_Name() + " 설정이 제거되었습니다.", Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -129,7 +129,6 @@ public class ListActivity extends ActionBarActivity {
             listView.setAdapter(mCardArrayAdapter);
         }
     }
-
 
     public String getContent(int wifiChecking, int soundChecking) {
 
