@@ -1,8 +1,8 @@
 package net.amicom.customizedphone;
 
-        import android.content.BroadcastReceiver;
-        import android.content.Context;
-        import android.content.Intent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 
 public class BootReciever extends BroadcastReceiver {
 

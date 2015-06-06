@@ -11,7 +11,7 @@ public class MySQLiteHandler {
     SQLiteDatabase db;
 
     public MySQLiteHandler(Context context) {
-        helper = new MySQLiteOpenHelper(context, "AutoSetting", null, 1);
+        helper = new MySQLiteOpenHelper(context, "AutoSettingData", null, 1);
     }
 
     public static MySQLiteHandler open(Context context) {

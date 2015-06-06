@@ -1,6 +1,7 @@
 package net.amicom.customizedphone;
 
 import android.database.Cursor;
+import android.util.Log;
 
 public class DataForm {
     //
@@ -30,25 +31,21 @@ public class DataForm {
 
     }
 
-
     public DataForm(Cursor cu) {
-        for (int i = 0; i < cu.getCount(); i++) {
-            cu.moveToNext();
-            primary_Key = cu.getInt(0);
-            time_Location_Checking = cu.getInt(1);
-            start_Time = cu.getString(2);
-            end_Time = cu.getString(3);
-            day_Sum = cu.getString(4);
-            location_Name = cu.getString(5);
-            location_Address_Name = cu.getString(6);
-            longitude = cu.getString(7);
-            latitude = cu.getString(8);
-            diameter = cu.getString(9);
-            wifi_Checking = cu.getInt(10);
-            sound_Checking = cu.getInt(11);
-            on_Off_Selecting = cu.getInt(12);
-
-        }
+        primary_Key = cu.getInt(0);
+        time_Location_Checking = cu.getInt(1);
+        start_Time = cu.getString(2);
+        end_Time = cu.getString(3);
+        day_Sum = cu.getString(4);
+        location_Name = cu.getString(5);
+        location_Address_Name = cu.getString(6);
+        longitude = cu.getString(7);
+        latitude = cu.getString(8);
+        diameter = cu.getString(9);
+        wifi_Checking = cu.getInt(10);
+        sound_Checking = cu.getInt(11);
+        on_Off_Selecting = cu.getInt(12);
+        Log.d("db primary key and name", cu.getInt(0) + " " + cu.getString(6) + "");
     }
 
     public int getPrimary_Key() {

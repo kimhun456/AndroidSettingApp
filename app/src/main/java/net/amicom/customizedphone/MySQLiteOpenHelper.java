@@ -16,7 +16,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String sql = "create table datas ("
+        String sql = "create table AutoSettingData ("
                 + " primary_Key integer primary key autoincrement ,"
                 + " time_Loacation_Checking integer , "
                 + " start_Time text ,"
@@ -34,7 +34,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("drop table if exists datas");
+        db.execSQL("drop table if exists AutoSettingData");
         onCreate(db);
     }
 

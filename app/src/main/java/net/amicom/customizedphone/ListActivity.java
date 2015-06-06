@@ -1,5 +1,6 @@
 package net.amicom.customizedphone;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -29,14 +30,17 @@ public class ListActivity extends ActionBarActivity {
         setContentView(R.layout.activity_listview);
 
         DBtoList();
-
+        showList();
+        Intent myIntent = new Intent(getApplicationContext(),
+                MyService.class);
+        startService(myIntent);
 
         addButton = (Button) findViewById(R.id.addButton);
-
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), LocationSettingActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -76,7 +80,6 @@ public class ListActivity extends ActionBarActivity {
 
             CardHeader header = new CardHeader(ListActivity.this);
             header.setTitle(df.getLocation_Name());
-
             card.addCardHeader(header);
             card.setTitle(df.getLocation_Address_Name());
             cards.add(card);
