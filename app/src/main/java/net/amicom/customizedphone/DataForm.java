@@ -45,7 +45,7 @@ public class DataForm {
         wifi_Checking = cu.getInt(10);
         sound_Checking = cu.getInt(11);
         on_Off_Selecting = cu.getInt(12);
-        Log.d("db primary key and name", cu.getInt(0) + " " + cu.getString(6) + "");
+        Log.d("db primary key, name", cu.getInt(0) + " " + cu.getInt(5) + " " + cu.getString(6) + "");
     }
 
     public int getPrimary_Key() {

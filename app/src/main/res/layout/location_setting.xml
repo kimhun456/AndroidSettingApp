@@ -1,122 +1,139 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:background="#397DB0"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="장소 이름  :  " />
+                android:text="장소 이름  :  "
+                android:textColor="#ffffff" />
 
             <EditText
                 android:id="@+id/nameEdit"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:hint="input Place Name" />
+                android:hint="input Place Name"
+                android:textColor="#ffffff"
+                android:textColorHint="#71AED4" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="장소 선택  :  " />
+                android:text="장소 선택  :  "
+                android:textColor="#ffffff" />
 
-            <Button
-                android:id="@+id/curplcBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="현재위치" />
 
             <Button
                 android:id="@+id/plcBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="위치고르기" />
+                android:background="#71AED4"
+                android:text="Click Here"
+                android:textColor="#ffffff"
+                android:textSize="13dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="선택된 위치  :  "/>
+                android:text="선택된 위치  :  "
+                android:textColor="#ffffff" />
+
             <TextView
+                android:id="@+id/placeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/placeName"
-                android:text=""/>
+                android:text=""
+                android:textColor="#ffffff" />
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="WIFI설정  :  " />
+                android:text="WIFI설정  :  "
+                android:textColor="#ffffff" />
 
             <ToggleButton
                 android:id="@+id/wifiToggle"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:text="ToggleButton" />
+                android:background="#71AED4"
+                android:text="ToggleButton"
+                android:textColor="#ffffff"
+                android:textSize="13dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="진동 설정  :  " />
+                android:text="소리 설정  :  "
+                android:textColor="#ffffff" />
 
             <RadioGroup
                 android:id="@+id/setGroup"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <RadioButton
                     android:id="@+id/soundRadio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="소리 Mode" />
+                    android:text="소리 Mode"
+                    android:textColor="#ffffff" />
 
                 <RadioButton
                     android:id="@+id/vibrationRadio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="진동 Mode" />
+                    android:text="진동 Mode"
+                    android:textColor="#ffffff" />
 
                 <RadioButton
                     android:id="@+id/silentRadio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="무음 Mode" />
+                    android:text="무음 Mode"
+                    android:textColor="#ffffff" />
             </RadioGroup>
         </LinearLayout>
 
@@ -126,21 +143,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="8"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/setbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="OK" />
+            android:background="#71AED4"
+            android:text="OK"
+            android:textColor="#ffffff"
+            android:textSize="13dp" />
 
         <Button
             android:id="@+id/backbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Back" />
+            android:background="#71AED4"
+            android:text="Back"
+            android:textColor="#ffffff"
+            android:textSize="13dp" />
     </LinearLayout>
 
 </LinearLayout>

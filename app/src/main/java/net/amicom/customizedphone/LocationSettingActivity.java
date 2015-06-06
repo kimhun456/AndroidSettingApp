@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class LocationSettingActivity extends Activity {
@@ -16,7 +15,6 @@ public class LocationSettingActivity extends Activity {
     MySQLiteHandler handler;
     static final int MAP_CODE = 1001;
     EditText nameEdit;
-    Button curLocBtn;
     Button locBtn;
     ToggleButton wifiBtn;
     RadioButton soundBtn;
@@ -36,7 +34,6 @@ public class LocationSettingActivity extends Activity {
         setContentView(R.layout.location_setting);
         gps = new GPStracker(LocationSettingActivity.this);
         nameEdit = (EditText) findViewById(R.id.nameEdit);
-        curLocBtn = (Button) findViewById(R.id.curplcBtn);
         locBtn = (Button) findViewById(R.id.plcBtn);
         wifiBtn = (ToggleButton) findViewById(R.id.wifiToggle);
         soundBtn = (RadioButton) findViewById(R.id.soundRadio);
@@ -48,26 +45,7 @@ public class LocationSettingActivity extends Activity {
         setBtn = (Button) findViewById(R.id.setbtn);
         backBtn = (Button) findViewById(R.id.backbtn);
 
-        curLocBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-
-                if (gps.canGetLocation()) {
-                    gps.getLatitude();
-                    gps.getLongitude();
-                    Toast.makeText(LocationSettingActivity.this,
-                            gps.getLatitude() + " " + gps.getLongitude() + "",
-                            Toast.LENGTH_SHORT).show();
-                    latitude = gps.getLatitude();
-                    longitude = gps.getLongitude();
-                } else {
-                    gps.showSettingsAlert();
-                }
-            }
-        });
-
+        
         locBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -91,9 +69,8 @@ public class LocationSettingActivity extends Activity {
                 // TODO Auto-generated method stub
 
                 DataForm df = new DataForm();
-                df.setTime_Location_Checking(1);
-                df.setOn_Off_Selecting(1);
                 df.setTime_Location_Checking(0);
+                df.setOn_Off_Selecting(1);
                 df.setLocation_Address_Name(placeTxt.getText().toString());
                 df.setLocation_Name(nameEdit.getText().toString());
                 df.setLatitude(latitude + "");

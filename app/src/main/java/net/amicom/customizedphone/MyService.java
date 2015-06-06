@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.wifi.WifiManager;
@@ -30,7 +31,12 @@ public class MyService extends Service implements Runnable {
     NotificationManager notificationManager;
     AudioManager audiomanager;
     WifiManager wifimanager;
+    MySQLiteHandler handler;
+    Cursor mCursor;
+
+
     ArrayList<TimeForm> timeList;
+    ArrayList<DataForm> dataList;
     Date date;
 
     public void onCreate() {
@@ -38,6 +44,7 @@ public class MyService extends Service implements Runnable {
 
         // 타임 객체를 저장할 어레이리스트 생성
         timeList = new ArrayList<TimeForm>();
+        dataList = new ArrayList<DataForm>();
 
         // 오디오매니저와 와이파이 매니저를 생성하여 와이파이설정과 소리설정을 바꾼다.
         audiomanager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -48,23 +55,9 @@ public class MyService extends Service implements Runnable {
         // 로케이션매니저를 이용하여 위치를 추적한다.
         locationManager = gps.locationManager;
 
-        DataForm df = new DataForm();
-        df.setDay_Sum("01110101");
-        df.setOn_Off_Selecting(1);
-        df.setTime_Location_Checking(0);
-        df.setLocation_Address_Name("아주대 팔달관");
-        df.setLocation_Name("here");
-        df.setLatitude("37.284272");
-        df.setLongitude("127.044629");
-        df.setDiameter("10");
+        DBtoList();
 
-
-        df.setWifi_Checking(0);
-        df.setSound_Checking(1);
-        df.setStart_Time("07:56");
-        df.setEnd_Time("07:57");
-
-        registerDataForm(df, 0);
+        registerDataFormList(dataList);
 
         intentReciever = new locationIntentReciver(intentkey);
         registerReceiver(intentReciever, intentReciever.getFilter());
@@ -73,6 +66,28 @@ public class MyService extends Service implements Runnable {
         myThread.start();
 
     }
+
+    public void onDestroy() {
+        // The service is no longer used and is being destroyed
+        unregisterReceiver(intentReciever);
+        super.onDestroy();
+    }
+
+
+    private void DBtoList() {
+        dataList = new ArrayList<DataForm>();
+        handler = new MySQLiteHandler(MyService.this);
+        mCursor = null;
+        mCursor = handler.select();
+
+        while (mCursor.moveToNext()) {
+            DataForm df = new DataForm(mCursor);
+            dataList.add(df);
+        }
+
+        mCursor.close();
+    }
+
 
     @Override
     public void run() {
@@ -105,7 +120,7 @@ public class MyService extends Service implements Runnable {
 
         for (int i = 0; i < dataList.size(); i++) {
 
-            registerDataForm(dataList.get(i), i);
+            registerDataForm(dataList.get(i), dataList.get(i).getPrimary_Key());
         }
 
     }
@@ -221,13 +236,14 @@ public class MyService extends Service implements Runnable {
         proxintent.putExtra("wifiChecking", wifiChecking);
         proxintent.putExtra("soundChecking", soundChecking);
         proxintent.putExtra("name", name);
+        proxintent.putExtra("id", id);
 
         // 팬딩인텐트를 등록시킨다.
         PendingIntent intent = PendingIntent.getBroadcast(this, id, proxintent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
 
         // 근접경보를 등록시킨다.
-        locationManager.addProximityAlert(latitude, longitude, radius, 10,
+        locationManager.addProximityAlert(latitude, longitude, radius, -1,
                 intent);
 
         Log.i(TAG, "Location add complete");
@@ -264,7 +280,7 @@ public class MyService extends Service implements Runnable {
 
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        Intent intent = new Intent(this, LocationSettingActivity.class);
+        Intent intent = new Intent(this, ListActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
         Notification n = new Notification.Builder(this).setContentTitle(title)
@@ -288,7 +304,7 @@ public class MyService extends Service implements Runnable {
         if (soundChecking == 0) {
 
             audiomanager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-            result.append("Normal Mode ON");
+            result.append("Sound Mode ON");
         } else if (soundChecking == 1) {
 
             audiomanager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
@@ -350,8 +366,19 @@ public class MyService extends Service implements Runnable {
 
                 //code  service start
 
+                String key = LocationManager.KEY_PROXIMITY_ENTERING;
+
+                Boolean entering = intent.getBooleanExtra(key, false);
+
+                if (entering) {
+                    Log.d(getClass().getSimpleName(), "entering receiverrrrrrrrrrrrrrrrrr");
+                } else {
+                    Log.d(getClass().getSimpleName(), "exiting");
+                }
+
 
             }
+
         }
 
     }
