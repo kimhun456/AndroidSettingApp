@@ -284,7 +284,7 @@ public class MyService extends Service implements Runnable {
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
         Notification n = new Notification.Builder(this).setContentTitle(title)
-                .setContentText(text).setSmallIcon(R.drawable.setting_Blue)
+                .setContentText(text).setSmallIcon(R.drawable.setting_blue)
                 .setContentIntent(pIntent).setAutoCancel(true).build();
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
